@@ -12,8 +12,11 @@ gulp.task('default', () => {
 
 gulp.task('upload', () => {
   const conn = ftp.create(config);
-  return gulp.src('.',{ base: 'deploy/', buffer: false })
-  .pipe( conn.dest( '/web/393/test/' ) );
+  console.log(conn);
+  return gulp.src('deploy/**', { base: 'deploy'})
+  .pipe( conn.dest( '/web/393/test/' ) )
+  .on('end', () => console.log('upload end'));
+
 });
 gulp.task('jade', () => {
   console.log('holl');
